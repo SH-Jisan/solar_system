@@ -22,7 +22,7 @@ while not glfw.window_should_close(window):
     camera.apply()
     
     draw_axes()              # draw x,y,z
-    draw_circle(radius = 2)
+    draw_circle(radius = 1)
 
     glfw.swap_buffers(window)
     glfw.poll_events()
