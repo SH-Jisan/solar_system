@@ -11,7 +11,7 @@ def draw_circle(radius, segments=1000):
 
         x = radius * math.cos(theta)   # X axis
         y = radius * math.sin(theta)   # Y axis
-        z = radius * math.sin(theta)    # XY plane
+        z = 0    # XY plane
 
         glVertex3f(x, y, z)
 
