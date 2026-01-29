@@ -1,1 +1,8 @@
-node_modules
+# Ignore all files and directories in the root
+/*
+
+# Exception: Keep the solar_system folder
+!/solar_system/
+
+# Exception: Keep the .gitignore file itself
+!/.gitignore
