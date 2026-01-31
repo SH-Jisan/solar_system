@@ -4,9 +4,8 @@ from OpenGL.GL import *
 from engine.window import create_window
 from engine.camera import Camera
 from geometry.axes import draw_axes
-from geometry.point import draw_point
+from geometry.sphere_step1 import draw_sphere_lit
 
-from geometry.circle import draw_circle
 
 window = create_window()
 camera = Camera()
@@ -20,9 +19,12 @@ while not glfw.window_should_close(window):
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
     camera.apply()
-    
     draw_axes()              # draw x,y,z
-    draw_circle(radius = 1)
+
+
+
+    draw_sphere_lit()
+
 
     glfw.swap_buffers(window)
     glfw.poll_events()
