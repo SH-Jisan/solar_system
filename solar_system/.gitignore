@@ -1,2 +1,10 @@
 node_modules
 .__pycache__
+__pycache__
+/__pycache__
+\--pycache__
+.__pycache__/
+.idea
+/.idea
+.idea/
+\.idea
