@@ -9,31 +9,39 @@ class Earth:
         # -------- Geometry --------
         self.radius = radius
 
-        # -------- Elliptical Orbit (scaled real proportion) --------
-        self.a = 9.0    # semi-major axis (X direction)
-        self.b = 8.8    # semi-minor axis (Z direction)
+        # -------- Elliptical Orbit --------
+        self.a = 9.0    # semi-major axis
+        self.b = 8.8    # semi-minor axis
 
         self.orbit_angle = 0
-        self.orbit_speed = 0.015   # slower than Venus
+        self.orbit_speed = 0.015
 
-        # -------- Self Rotation (spin) --------
+        # -------- Self Rotation --------
         self.spin_angle = 0
-        self.spin_speed = 1.0      # Earth spins faster than Venus
+        self.spin_speed = 1.0
 
         # -------- Axis Tilt --------
-        self.tilt_angle = 23.5     # Earth axial tilt (realistic)
+        self.tilt_angle = 23.5
+
+        # -------- World Position (IMPORTANT for Moon) --------
+        self.x = 0
+        self.y = 0
+        self.z = 0
 
     def update(self):
-        # update orbital motion (revolution)
+        # ---- Earth revolution (ellipse around Sun) ----
+        self.x = self.a * math.cos(self.orbit_angle)
+        self.z = self.b * math.sin(self.orbit_angle)
+        self.y = 0
+
         self.orbit_angle += self.orbit_speed
 
-        # update self rotation (spin)
+        # ---- Earth self spin ----
         self.spin_angle += self.spin_speed
         if self.spin_angle >= 360:
             self.spin_angle -= 360
 
     def draw_orbit_path(self):
-        """Draw Earth's orbit (ellipse) around Sun"""
         glColor3f(0.8, 0.8, 0.8)
         glBegin(GL_LINE_LOOP)
 
@@ -47,27 +55,25 @@ class Earth:
         glEnd()
 
     def draw(self):
-        # draw orbit path
+        # draw Earth orbit
         self.draw_orbit_path()
 
         glPushMatrix()
 
-        # ---- Parent transform (Sun position) ----
+        # ---- move to Sun (parent) ----
         glTranslatef(self.sun.x, self.sun.y, self.sun.z)
 
-        # ---- Elliptical revolution ----
-        x = self.a * math.cos(self.orbit_angle)
-        z = self.b * math.sin(self.orbit_angle)
-        glTranslatef(x, 0, z)
+        # ---- move to Earth's orbit position ----
+        glTranslatef(self.x, self.y, self.z)
 
-        # ---- Axis tilt ----
+        # ---- tilt ----
         glRotatef(self.tilt_angle, 1, 0, 0)
 
-        # ---- Self spin ----
+        # ---- spin ----
         glRotatef(self.spin_angle, 0, 1, 0)
 
-        # ---- Draw Earth geometry ----
-        glColor3f(0.2, 0.4, 1.0)   # bluish Earth
+        # ---- draw Earth ----
+        glColor3f(0.2, 0.4, 1.0)
         draw_sphere(radius=self.radius, lat_div=20, lon_div=40)
 
         glPopMatrix()
