@@ -6,6 +6,8 @@ from engine.camera import Camera
 from geometry.axes import draw_axes
 from objects.sun import Sun
 from objects.mercury import Mercury
+from objects.venus import Venus
+
 
 window = create_window()
 camera = Camera()
@@ -16,6 +18,7 @@ glfw.set_scroll_callback(window, camera.scroll_callback)
 
 sun = Sun(radius = 2)
 mercury = Mercury(sun, radius=0.5)
+venus = Venus(sun, radius=0.7)
 
 while not glfw.window_should_close(window):
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -31,6 +34,9 @@ while not glfw.window_should_close(window):
 
     mercury.update()
     mercury.draw()
+
+    venus.update()
+    venus.draw()
 
     glfw.swap_buffers(window)
     glfw.poll_events()
