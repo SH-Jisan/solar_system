@@ -10,6 +10,8 @@ from objects.mercury import Mercury
 from objects.venus import Venus
 from objects.moon import Moon
 from objects.mars import Mars
+from objects.mars_moon import MarsMoon
+from objects.mars_moon2 import MarsMoon2
 
 window = create_window()
 camera = Camera()
@@ -24,6 +26,8 @@ venus = Venus(sun, radius=0.7)
 earth = Earth(sun, radius=0.5)
 moon = Moon(earth, radius=0.5)
 mars = Mars(sun, radius=0.6)
+mars_moon = MarsMoon(mars, radius=0.2)
+mars_moon2 = MarsMoon2(mars, radius=0.15)
 
 while not glfw.window_should_close(window):
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -51,6 +55,12 @@ while not glfw.window_should_close(window):
 
     mars.update()
     mars.draw()
+
+    mars_moon.update()
+    mars_moon.draw()
+
+    mars_moon2.update()
+    mars_moon2.draw()
 
     glfw.swap_buffers(window)
     glfw.poll_events()
