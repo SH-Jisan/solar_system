@@ -14,7 +14,7 @@ from objects.mars_moon import MarsMoon
 from objects.mars_moon2 import MarsMoon2
 from objects.jupiter import Jupiter
 from objects.jupiter_moons import JupiterMoons
-
+from objects.saturn import Saturn
 window = create_window()
 camera = Camera()
 
@@ -32,6 +32,8 @@ mars_moon = MarsMoon(mars, radius=0.2)
 mars_moon2 = MarsMoon2(mars, radius=0.15)
 jupiter = Jupiter(sun, radius=1.2)
 jupiter_moons = JupiterMoons(jupiter)
+saturn = Saturn(sun, radius=1.0)
+
 while not glfw.window_should_close(window):
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glLoadIdentity()
@@ -66,6 +68,9 @@ while not glfw.window_should_close(window):
     jupiter.draw()
     jupiter_moons.update()
     jupiter_moons.draw()
+
+    saturn.update()
+    saturn.draw()
 
     glfw.swap_buffers(window)
     glfw.poll_events()
