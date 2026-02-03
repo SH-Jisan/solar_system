@@ -9,6 +9,7 @@ class Earth:
         # -------- Geometry --------
         self.radius = radius
 
+        self.inclination = 0.0
         # -------- Elliptical Orbit --------
         self.a = 9.0    # semi-major axis
         self.b = 8.8    # semi-minor axis
@@ -29,10 +30,11 @@ class Earth:
         self.z = 0
 
     def update(self):
+        i = math.radians(self.inclination)
         # ---- Earth revolution (ellipse around Sun) ----
         self.x = self.a * math.cos(self.orbit_angle)
-        self.z = self.b * math.sin(self.orbit_angle)
-        self.y = 0
+        self.z = self.b * math.sin(self.orbit_angle) * math.cos(i)
+        self.y = self.b * math.sin(self.orbit_angle) * math.sin(i)
 
         self.orbit_angle += self.orbit_speed
 

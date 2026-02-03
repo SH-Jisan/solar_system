@@ -9,6 +9,8 @@ class Mercury:
         # geometry
         self.radius = radius
 
+        self.inclination = 7.0 #Mercury orbital inclination (degrees)
+
         self.a = 4.5
         self.b = 3.5
 
@@ -24,6 +26,14 @@ class Mercury:
         self.tilt_angle = 10   # exaggerated for visibility (real Mercury ≈ 0.03°)
 
     def update(self):
+        #convert inclination to radians
+        i = math.radians(self.inclination)
+
+        #3D elliptical orbit with inclination
+        self.x = self.a * math.cos(self.orbit_angle)
+        self.z = self.b * math.sin(self.orbit_angle) * math.cos(i)
+        self.y = self.b * math.sin(self.orbit_angle) * math.sin(i)
+
         # update orbit angle
         self.orbit_angle += self.orbit_speed
 

@@ -8,6 +8,7 @@ class Jupiter:
 
         # -------- Geometry (big planet) --------
         self.radius = radius
+        self.inclination = 1.3
 
         # -------- Elliptical Orbit (scaled) --------
         self.a = 16.0   # semi-major axis
@@ -30,9 +31,10 @@ class Jupiter:
 
     def update(self):
         # ---- Jupiter revolution ----
+        i = math.radians(self.inclination)
         self.x = self.a * math.cos(self.orbit_angle)
-        self.z = self.b * math.sin(self.orbit_angle)
-        self.y = 0
+        self.z = self.b * math.sin(self.orbit_angle) * math.cos(i)
+        self.y = self.b * math.sin(self.orbit_angle) * math.sin(i)
 
         self.orbit_angle += self.orbit_speed
 

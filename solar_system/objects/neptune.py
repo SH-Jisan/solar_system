@@ -9,6 +9,7 @@ class Neptune:
 
         # -------- Geometry --------
         self.radius = radius
+        self.inclination =1.8
 
         # -------- Elliptical Orbit --------
         self.a = 28.0   # semi-major axis (farthest)
@@ -31,9 +32,10 @@ class Neptune:
 
     def update(self):
         # revolution around Sun (ellipse)
+        i = math.radians(self.inclination)
         self.x = self.a * math.cos(self.orbit_angle)
-        self.z = self.b * math.sin(self.orbit_angle)
-        self.y = 0
+        self.z = self.b * math.sin(self.orbit_angle) * math.cos(i)
+        self.y = self.b * math.sin(self.orbit_angle) * math.sin(i)
 
         self.orbit_angle += self.orbit_speed
 

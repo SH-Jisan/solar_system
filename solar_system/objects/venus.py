@@ -8,6 +8,7 @@ class Venus:
 
         # -------- Geometry --------
         self.radius = radius
+        self.inclination = 3.4
 
         # -------- Elliptical Orbit (realistic proportion) --------
         # Venus semi-major & semi-minor (scaled)
@@ -27,6 +28,11 @@ class Venus:
     def update(self):
         # update orbital motion (revolution)
         self.orbit_angle += self.orbit_speed
+
+        i = math.radians(self.inclination)
+        self.x = self.a * math.cos(self.orbit_angle)
+        self.z = self.b * math.sin(self.orbit_angle) * math.cos(i)
+        self.y = self.b * math.sin(self.orbit_angle) * math.sin(i)
 
         # update self rotation (spin)
         self.spin_angle += self.spin_speed
