@@ -5,6 +5,7 @@ from engine.window import create_window
 from engine.camera import Camera
 from geometry.axes import draw_axes
 from objects.earth import Earth
+from objects.neptune import Neptune
 from objects.sun import Sun
 from objects.mercury import Mercury
 from objects.venus import Venus
@@ -36,6 +37,7 @@ jupiter = Jupiter(sun, radius=1.2)
 jupiter_moons = JupiterMoons(jupiter)
 saturn = Saturn(sun, radius=1.0)
 uranus = Uranus(sun, radius=0.9)
+neptune = Neptune(sun, radius=0.85)
 
 while not glfw.window_should_close(window):
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -77,6 +79,9 @@ while not glfw.window_should_close(window):
 
     uranus.update()
     uranus.draw()
+
+    neptune.update()
+    neptune.draw()
 
     glfw.swap_buffers(window)
     glfw.poll_events()
